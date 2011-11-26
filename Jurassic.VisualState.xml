@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Users\Alxandr\Documents\Visual Studio 2010\Projects\Jurassic\Jurassic.nunit</TopNode>
+  <SelectedNode>[0-1380]UnitTests</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Users\Alxandr\Documents\Visual Studio 2010\Projects\Jurassic\Jurassic.nunit" Expanded="true" />
+    <Node UniqueName="[0-1379]C:\Users\Alxandr\Documents\Visual Studio 2010\Projects\Jurassic\Unit Tests\bin\Debug\Unit Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1380]UnitTests" Expanded="true" />
+  </Nodes>
+</VisualState>
