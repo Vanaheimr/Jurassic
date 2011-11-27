@@ -94,8 +94,8 @@ namespace UnitTests
                 NUnit.Framework.Assert.Ignore(IgnoreReason(test));
         }
 
-        protected abstract bool IsIgnored(Test test);
-        protected abstract string IgnoreReason(Test test);
+        public abstract bool IsIgnored(Test test);
+        public abstract string IgnoreReason(Test test);
     }
 
     public class Test
@@ -156,18 +156,10 @@ namespace UnitTests
         /// </summary>
         public void Execute()
         {
-            suite.ThrowIfIgnored(this);
             ScriptEngine engine = new ScriptEngine();
+            engine.CompatibilityMode = suite.CompatibilityMode;
             var run = suite.Setup(engine);
-            try
-            {
-                engine.Execute(new FileScriptSource(path, suite.ScriptEncoding));
-            }
-            catch (JavaScriptException e)
-            {
-                if (!File.ReadAllText(path).Contains("@negative"))
-                    throw;
-            }
+            engine.Execute(new FileScriptSource(path, suite.ScriptEncoding));
             if (run != null)
                 run.CallLateBound(engine.Global);
         }
@@ -274,12 +266,12 @@ namespace UnitTests
             }
         }
 
-        protected override bool IsIgnored(Test test)
+        public override bool IsIgnored(Test test)
         {
             return buggyTests.ContainsKey(test.Name) || wontFixTests.ContainsKey(test.Name);
         }
 
-        protected override string IgnoreReason(Test test)
+        public override string IgnoreReason(Test test)
         {
             if (buggyTests.ContainsKey(test.Name))
                 return buggyTests[test.Name];
@@ -523,12 +515,12 @@ namespace UnitTests
             }
         }
 
-        protected override bool IsIgnored(Test test)
+        public override bool IsIgnored(Test test)
         {
             return buggyTests.ContainsKey(test.Name) || wontFixTests.ContainsKey(test.Name);
         }
 
-        protected override string IgnoreReason(Test test)
+        public override string IgnoreReason(Test test)
         {
             if (buggyTests.ContainsKey(test.Name))
                 return buggyTests[test.Name];
