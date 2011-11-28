@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Text.RegularExpressions;
+using Jurassic;
+using Jurassic.Library;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -8,48 +8,31 @@ namespace UnitTests
     [TestFixture]
     public class ScriptTests
     {
-        [Test, TestCaseSource("ES5ConformSource")]
-        public void ES5Conform(Test test)
+        [Test, TestCaseSource(typeof(Test262Suite), "GetTests")]
+        public void Js265Test(string includes, string content, bool forceStrictMode, bool isNegative, string negativeReturnType)
         {
-            test.Execute();
-        }
-
-        private static IEnumerable<TestCaseData> ES5ConformSource()
-        {
-            var suite = new ES5ConformTestSuite();
-            return suite.Tests.OrderBy(t => t.Name).Select(t =>
+            ScriptEngine engine = new ScriptEngine();
+            engine.ForceStrictMode = forceStrictMode;
+            engine.Execute(includes);
+            try
             {
-                var tcd = new TestCaseData(t).SetName(t.Name);
-                if (suite.IsIgnored(t))
-                    tcd.Ignore(suite.IgnoreReason(t));
-
-                return tcd;
-            });
-        }
-
-        [Test, TestCaseSource("sputnikSource")]
-        public void sputnik(Test test)
-        {
-            test.Execute();
-        }
-
-        private static IEnumerable<TestCaseData> sputnikSource()
-        {
-            var suite = new sputnikTestSuite();
-            return suite.Tests.OrderBy(t => t.Name).Select(t =>
+                engine.Execute(content);
+            }
+            catch (JavaScriptException e)
             {
-                var tcd = new TestCaseData(t).SetName(t.Name);
-                if (suite.IsIgnored(t))
-                    tcd = tcd.Ignore(suite.IgnoreReason(t));
+                if (isNegative)
+                {
+                    if (negativeReturnType == null)
+                        return;
 
-                var content = File.ReadAllText(t.Path);
-                if (content.Contains("@negative"))
-                    tcd = tcd.Throws(typeof(Jurassic.JavaScriptException));
-                int assertionStart = content.IndexOf("@assertion:") + "assertion: ".Length;
-                tcd = tcd.SetProperty("_ASSERTION", content.Substring(assertionStart, content.IndexOfAny(new char[] { '\r', '\n' }, assertionStart) - assertionStart));
-                int descriptionStart = content.IndexOf("@description:") + "@description: ".Length;
-                return tcd.SetDescription(content.Substring(descriptionStart, content.IndexOfAny(new char[] { '\r', '\n' }, descriptionStart) - descriptionStart));
-            });
+                    string exceptionType = TypeConverter.ToString(((ObjectInstance)e.ErrorObject)["name"]);
+                    Assert.IsTrue(Regex.IsMatch(exceptionType, negativeReturnType), "  Expected: {0}\n    But was:  {1}", negativeReturnType, exceptionType);
+                }
+                else
+                    Assert.Fail("An exception was not expected. Exception: {0}", e);
+            }
+            if (isNegative)
+                Assert.Fail("An exception was expected.");
         }
     }
 }
