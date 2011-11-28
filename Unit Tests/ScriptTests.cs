@@ -8,7 +8,7 @@ namespace UnitTests
     [TestFixture]
     public class ScriptTests
     {
-        [Test, TestCaseSource(typeof(Test262Suite), "GetTests")]
+        [Test, TestCaseSource(typeof(Test262Suite), "GetTests"), Timeout(2 * 60 * 1000)] // Don't let it run for longer than 2 minutes.
         public void Js265Test(string includes, string content, bool forceStrictMode, bool isNegative, string negativeReturnType)
         {
             ScriptEngine engine = new ScriptEngine();
