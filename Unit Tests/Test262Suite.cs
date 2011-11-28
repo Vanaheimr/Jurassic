@@ -44,7 +44,7 @@ namespace UnitTests
                     if (isNegative)
                     {
                         var negativeStart = content.IndexOf("@negative ") + "@negative ".Length;
-                        if (negativeStart != -1)
+                        if (negativeStart != -1 + "@negative ".Length)
                         {
                             negativeType = content.Substring(negativeStart, content.IndexOfAny(new char[] { '\r', '\n' }, negativeStart) - negativeStart).Trim();
                             if (string.IsNullOrWhiteSpace(negativeType))
@@ -65,7 +65,7 @@ namespace UnitTests
                         tcd = tcd.SetProperty("_NOTIGNORED", "TRUE");
                     }
 
-                    tcd = tcd.SetProperty("@_name", zf.Name.Substring(0, zf.Name.Length - 3));
+                    tcd = tcd.SetProperty("@_name", zf.Name.Substring(0, zf.Name.Length - 3)).SetProperty("@_negativeType", negativeType);
 
                     foreach (Match match in r.Matches(content))
                     {

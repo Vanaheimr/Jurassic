@@ -11,7 +11,7 @@ namespace Jurassic
     [Serializable]
     public sealed class ScriptEngine
 #if !SILVERLIGHT
-        : System.Runtime.Serialization.ISerializable
+ : System.Runtime.Serialization.ISerializable
 #endif
     {
         // Compatibility mode.
@@ -41,6 +41,9 @@ namespace Jurassic
         private ErrorConstructor uriErrorConstructor;
         private ErrorConstructor evalErrorConstructor;
         private ErrorConstructor referenceErrorConstructor;
+
+        // Shutdown mechanism
+        private volatile bool shutDown = false;
 
 
         public ScriptEngine()
@@ -553,7 +556,7 @@ namespace Jurassic
                 source,                             // The source code.
                 CreateOptions(),                    // The compiler options.
                 this.Global);                       // The value of the "this" keyword.
-            
+
             // Parse
             if (this.ParsingStarted != null)
                 this.ParsingStarted(this, EventArgs.Empty);
@@ -1071,6 +1074,28 @@ namespace Jurassic
                     this.staticTypeWrapperCache = new Dictionary<Type, ClrStaticTypeWrapper>();
                 return this.staticTypeWrapperCache;
             }
+        }
+
+        //     SHUTDOWN
+        //_________________________________________________________________________________________
+
+        /// <summary>
+        /// Shuts down.
+        /// </summary>
+        public void ShutDown()
+        {
+            shutDown = true;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this scriptengine is shutting down.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the scriptengine is shutting down; otherwise, <c>false</c>.
+        /// </value>
+        internal bool ShuttingDown
+        {
+            get { return shutDown; }
         }
     }
 }

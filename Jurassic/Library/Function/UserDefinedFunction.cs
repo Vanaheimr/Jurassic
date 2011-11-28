@@ -15,7 +15,7 @@ namespace Jurassic.Library
 
         [NonSerialized]
         private FunctionDelegate body;
-        
+
 
 
         //     INITIALIZATION
@@ -240,6 +240,8 @@ namespace Jurassic.Library
             var body = Compile();
 
             // Call the function.
+            if (this.Engine.ShuttingDown)
+                throw new Exception("Shutting down");
             return body(this.Engine, this.ParentScope, thisObject, this, argumentValues);
         }
 

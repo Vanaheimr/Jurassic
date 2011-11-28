@@ -99,6 +99,10 @@
       <Project>{9B109B9C-4B72-4BDB-B531-627D7E93011E}</Project>
       <Name>Jurassic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestAssembly\TestAssembly.csproj">
+      <Project>{1A2DBE8B-C35D-4984-9D72-C8CAE9D895A9}</Project>
+      <Name>TestAssembly</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core\Sample Files\execute1.js" />
