@@ -89,7 +89,7 @@ namespace UnitTests
                         int startPos = "Jurassic.JavaScriptException: ".Length;
                         string errorType = firstLine.Substring(startPos, firstLine.IndexOf(':', startPos) - startPos);
                         if (!Regex.IsMatch(errorType, negativeReturnType))
-                            Assert.Fail("Wrong exception:\n  Expected: {0}\n  Received: {1}", negativeReturnType, errorType);
+                            Assert.Fail("Wrong exception:{2}  Expected: {0}{2}  Received: {1}", negativeReturnType, errorType, Environment.NewLine);
                     }
                 }
                 else
