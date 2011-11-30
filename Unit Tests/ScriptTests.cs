@@ -13,29 +13,38 @@ namespace UnitTests
     {
         Process process;
         private readonly object plock = new object();
+        private volatile int pCount = 0;
 
         public Process GetRunner()
         {
-            if (process == null)
+            int c;
+            lock (plock)
+                c = pCount;
+            if (c >= 10)
+                TearDown();
+
+            lock (plock)
             {
-                lock (plock)
+                if (process == null)
                 {
-                    if (process == null)
-                    {
-                        ProcessStartInfo psi = new ProcessStartInfo("TestAssembly.exe");
-                        psi.UseShellExecute = false;
-                        psi.CreateNoWindow = true;
-                        psi.ErrorDialog = false;
-                        psi.RedirectStandardError = true;
-                        psi.RedirectStandardInput = true;
-                        psi.RedirectStandardOutput = true;
-                        //psi.StandardErrorEncoding = Encoding.UTF8;
-                        //psi.StandardOutputEncoding = Encoding.UTF8;
-                        process = new Process();
-                        process.StartInfo = psi;
-                        Console.WriteLine("Starting runner.");
-                        process.Start();
-                    }
+                    ProcessStartInfo psi = new ProcessStartInfo("TestAssembly.exe");
+                    psi.UseShellExecute = false;
+                    psi.CreateNoWindow = true;
+                    psi.ErrorDialog = false;
+                    psi.RedirectStandardError = true;
+                    psi.RedirectStandardInput = true;
+                    psi.RedirectStandardOutput = true;
+                    //psi.StandardErrorEncoding = Encoding.UTF8;
+                    //psi.StandardOutputEncoding = Encoding.UTF8;
+                    process = new Process();
+                    process.StartInfo = psi;
+                    Console.WriteLine("Starting runner.");
+                    process.Start();
+                    pCount = 0;
+                }
+                else
+                {
+                    pCount++;
                 }
             }
             return process;
@@ -137,6 +146,7 @@ namespace UnitTests
                 for (; ; )
                 {
                     var l = p.StandardOutput.ReadLine();
+                    Console.WriteLine(l);
                     if (l == "::fin::")
                         break;
                     sb.AppendLine(l);

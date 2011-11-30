@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-3264]UnitTests.ScriptTests.S12.6.1_A5</TopNode>
-  <SelectedNode>[0-3300]UnitTests.ScriptTests.S12.6.3_A10</SelectedNode>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
+  <TopNode>[0-1000]C:\Users\Alxandr\Documents\Visual Studio 2010\Projects\Jurassic\Jurassic.nunit</TopNode>
+  <SelectedNode>[0-1096]UnitTests.ScriptTests.Sbp_A10_T1</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1000]C:\Users\Alxandr\Documents\Visual Studio 2010\Projects\Jurassic\Jurassic.nunit" Expanded="true" />
@@ -10,6 +10,26 @@
     <Node UniqueName="[0-1094]UnitTests.ScriptTests" Expanded="true" />
     <Node UniqueName="[0-1095]UnitTests.ScriptTests.Js265Test" Expanded="true" />
     <Node UniqueName="[0-1096]UnitTests.ScriptTests.Sbp_A10_T1" Checked="true" />
-    <Node UniqueName="[0-1502]UnitTests.ScriptTests.S7.9_A11_T8" Checked="true" />
+    <Node UniqueName="[0-1097]UnitTests.ScriptTests.Sbp_A10_T2" Checked="true" />
+    <Node UniqueName="[0-1098]UnitTests.ScriptTests.Sbp_A1_T1" Checked="true" />
+    <Node UniqueName="[0-1099]UnitTests.ScriptTests.Sbp_A2_T1" Checked="true" />
+    <Node UniqueName="[0-1100]UnitTests.ScriptTests.Sbp_A2_T2" Checked="true" />
+    <Node UniqueName="[0-1101]UnitTests.ScriptTests.Sbp_A3_T1" Checked="true" />
+    <Node UniqueName="[0-1102]UnitTests.ScriptTests.Sbp_A3_T2" Checked="true" />
+    <Node UniqueName="[0-1103]UnitTests.ScriptTests.Sbp_A4_T1" Checked="true" />
+    <Node UniqueName="[0-1104]UnitTests.ScriptTests.Sbp_A4_T2" Checked="true" />
+    <Node UniqueName="[0-1105]UnitTests.ScriptTests.Sbp_A5_T1" Checked="true" />
+    <Node UniqueName="[0-1106]UnitTests.ScriptTests.Sbp_A5_T2" Checked="true" />
+    <Node UniqueName="[0-1107]UnitTests.ScriptTests.S7.2_A1.1_T1" Checked="true" />
+    <Node UniqueName="[0-1108]UnitTests.ScriptTests.S7.2_A1.1_T2" Checked="true" />
+    <Node UniqueName="[0-1109]UnitTests.ScriptTests.S7.2_A1.2_T1" Checked="true" />
+    <Node UniqueName="[0-1110]UnitTests.ScriptTests.S7.2_A1.2_T2" Checked="true" />
+    <Node UniqueName="[0-1111]UnitTests.ScriptTests.S7.2_A1.3_T1" Checked="true" />
+    <Node UniqueName="[0-1112]UnitTests.ScriptTests.S7.2_A1.3_T2" Checked="true" />
+    <Node UniqueName="[0-1113]UnitTests.ScriptTests.S7.2_A1.4_T1" Checked="true" />
+    <Node UniqueName="[0-1114]UnitTests.ScriptTests.S7.2_A1.4_T2" Checked="true" />
+    <Node UniqueName="[0-1115]UnitTests.ScriptTests.S7.2_A1.5_T1" Checked="true" />
+    <Node UniqueName="[0-1116]UnitTests.ScriptTests.S7.2_A1.5_T2" Checked="true" />
+    <Node UniqueName="[0-1117]UnitTests.ScriptTests.S7.2_A2.1_T1" Checked="true" />
   </Nodes>
 </VisualState>
