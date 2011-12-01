@@ -55,7 +55,7 @@ namespace UnitTests
 
                     var fn = Path.GetFileName(zf.Name);
                     string name = fn.Substring(0, fn.Length - 3);
-                    var tcd = new TestCaseData(includes, content, forceStrictMode, isNegative, negativeType).SetName(name);
+                    var tcd = new TestCaseData(includes, content, forceStrictMode, isNegative, negativeType).SetName(name.Replace("_", "__").Replace('.', '_'));
                     if (skippedTests.Any(t => t.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)))
                     {
                         tcd = tcd.Ignore(skippedTests.First(t => t.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)).Reason);
